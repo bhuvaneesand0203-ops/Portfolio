@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bhuvaneesan D — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#122436;
+    --ink-deep:#0c1c2b;
+    --panel:#0f2233;
+    --line:#5f95a3;
+    --line-soft:rgba(159,201,211,0.22);
+    --paper:#eef2f1;
+    --paper-dim:#b8c7cc;
+    --accent:#f2762e;
+    --accent-dim:#c95f22;
+    --grid:rgba(159,201,211,0.07);
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+  ::selection{background:var(--accent); color:var(--ink-deep);}
+  a{color:inherit;}
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    margin:0;
+  }
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.03em;
+    color:var(--line);
+  }
+
+  /* ---------- corner marks (blueprint sheet feel, used once, deliberately) ---------- */
+  .sheet{
+    position:relative;
+    border:1px solid var(--line-soft);
+    margin:26px 0;
+  }
+  .sheet::before,.sheet::after,
+  .sheet .cA::before,.sheet .cA::after{
+    content:"";
+    position:absolute;
+    width:14px;height:14px;
+    border:1.5px solid var(--line);
+    opacity:0.7;
+  }
+  .sheet::before{top:-1px;left:-1px;border-right:none;border-bottom:none;}
+  .sheet::after{bottom:-1px;right:-1px;border-left:none;border-top:none;}
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:10;
+    background:rgba(12,28,43,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  nav{
+    max-width:900px;
+    margin:0 auto;
+    padding:16px 28px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  nav .mark{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    letter-spacing:0.02em;
+  }
+  nav .mark span{color:var(--accent);}
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:22px;
+    margin:0; padding:0;
+    font-size:14px;
+  }
+  nav ul li a{
+    text-decoration:none;
+    color:var(--paper-dim);
+    border-bottom:1px solid transparent;
+    padding-bottom:3px;
+    transition:color .15s, border-color .15s;
+  }
+  nav ul li a:hover, nav ul li a:focus-visible{
+    color:var(--paper);
+    border-color:var(--accent);
+  }
+  @media (max-width:640px){
+    nav ul{gap:14px; font-size:12.5px;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:76px 0 54px;
+  }
+  .hero .label{margin-bottom:14px; display:block;}
+  .hero h1{
+    font-size:clamp(34px, 6vw, 54px);
+    line-height:1.08;
+    max-width:11ch;
+  }
+  .hero .role{
+    margin-top:14px;
+    font-size:18px;
+    color:var(--paper-dim);
+    max-width:52ch;
+  }
+  .hero .desc{
+    margin-top:18px;
+    font-size:15.5px;
+    color:var(--paper-dim);
+    max-width:56ch;
+  }
+  .hero .links{
+    margin-top:30px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 18px;
+    border:1px solid var(--line);
+    text-decoration:none;
+    font-size:14px;
+    color:var(--paper);
+    border-radius:var(--radius);
+    transition:background .15s, border-color .15s, color .15s;
+  }
+  .btn:hover{background:var(--accent); border-color:var(--accent); color:var(--ink-deep);}
+  .btn.solid{background:var(--accent); border-color:var(--accent); color:var(--ink-deep);}
+  .btn.solid:hover{background:var(--accent-dim); border-color:var(--accent-dim); color:var(--paper);}
+
+  /* ---------- section shell ---------- */
+  section{padding:52px 0;}
+  section + section{border-top:1px solid var(--line-soft);}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:30px;
+  }
+  .section-head .num{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--line);
+    font-size:13px;
+  }
+  .section-head h2{font-size:24px;}
+  .section-head .rule{
+    flex:1;
+    height:1px;
+    background:var(--line-soft);
+  }
+
+  /* ---------- about ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:36px;
+  }
+  .about-grid p{color:var(--paper-dim); font-size:15px;}
+  .about-grid p + p{margin-top:14px;}
+  .field{
+    padding:14px 16px;
+    border:1px solid var(--line-soft);
+  }
+  .field + .field{margin-top:10px;}
+  .field .k{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--line);
+    display:block;
+    margin-bottom:4px;
+  }
+  .field .v{font-size:14px;}
+  @media (max-width:700px){ .about-grid{grid-template-columns:1fr;} }
+
+  /* ---------- skills ---------- */
+  .skill-groups{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1px;
+    background:var(--line-soft);
+    border:1px solid var(--line-soft);
+  }
+  .skill-groups .grp{
+    background:var(--ink);
+    padding:20px 22px;
+  }
+  .grp h3{font-size:14px; color:var(--paper); margin-bottom:12px; font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-size:13px;
+    padding:5px 11px;
+    border:1px solid var(--line-soft);
+    color:var(--paper-dim);
+  }
+  @media (max-width:640px){ .skill-groups{grid-template-columns:1fr;} }
+
+  /* ---------- projects (spec sheets, not cards) ---------- */
+  .project{
+    padding:24px 0;
+  }
+  .project + .project{border-top:1px dashed var(--line-soft);}
+  .project-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:8px;
+  }
+  .project h3{font-size:19px;}
+  .project .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--accent);
+  }
+  .project p{color:var(--paper-dim); font-size:14.5px; max-width:64ch;}
+  .project .meta{
+    margin-top:12px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px;
+    font-size:12.5px;
+  }
+  .project .meta div .k{color:var(--line); font-family:'IBM Plex Mono',monospace; display:block; margin-bottom:2px;}
+
+  /* ---------- process ---------- */
+  .process{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    counter-reset:step;
+  }
+  .step{
+    flex:1 1 110px;
+    padding:16px 14px;
+    border:1px solid var(--line-soft);
+    margin:-1px 0 0 -1px;
+    position:relative;
+  }
+  .step .n{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--accent);
+    font-size:12px;
+    display:block;
+    margin-bottom:8px;
+  }
+  .step .t{font-size:14px;}
+
+  /* ---------- learning / beyond ---------- */
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  .two-col h3{font-size:15px; margin-bottom:14px; font-family:'IBM Plex Mono',monospace; font-weight:500; color:var(--paper);}
+  .two-col ul{margin:0; padding-left:18px; color:var(--paper-dim); font-size:14.5px;}
+  .two-col ul li{margin-bottom:6px;}
+  @media (max-width:700px){ .two-col{grid-template-columns:1fr;} }
+
+  /* ---------- contact / title block ---------- */
+  .titleblock{
+    border:1px solid var(--line-soft);
+  }
+  .tb-top{
+    padding:26px 26px 20px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .tb-top h2{font-size:26px; margin-bottom:8px;}
+  .tb-top p{color:var(--paper-dim); font-size:14.5px; max-width:52ch;}
+  .tb-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+  }
+  .tb-grid a, .tb-grid .cell{
+    display:block;
+    padding:16px 18px;
+    border-right:1px solid var(--line-soft);
+    text-decoration:none;
+    color:var(--paper);
+    transition:background .15s;
+  }
+  .tb-grid a:last-child, .tb-grid .cell:last-child{border-right:none;}
+  .tb-grid a:hover{background:rgba(242,118,46,0.08);}
+  .tb-grid .k{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    color:var(--line);
+    margin-bottom:6px;
+  }
+  .tb-grid .v{font-size:13px; word-break:break-word;}
+  @media (max-width:700px){
+    .tb-grid{grid-template-columns:1fr 1fr;}
+    .tb-grid a:nth-child(2), .tb-grid .cell:nth-child(2){border-right:none;}
+    .tb-grid a{border-bottom:1px solid var(--line-soft);}
+  }
+
+  footer{
+    text-align:center;
+    padding:30px 0 50px;
+    font-size:12.5px;
+    color:var(--line);
+    font-family:'IBM Plex Mono', monospace;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="mark">BHUVANEESAN<span>.</span></div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <span class="label">B.TECH INFORMATION TECHNOLOGY — SOFTWARE DEVELOPMENT &amp; AI</span>
+    <h1>Bhuvaneesan D</h1>
+    <p class="role">I learn by building — chatbots, web apps, and local LLM experiments, one project at a time.</p>
+    <p class="desc">Currently studying Information Technology, with a growing focus on AI-integrated applications: conversational agents, local language models, and RAG systems, alongside full-stack web development.</p>
+    <div class="links">
+      <a class="btn solid" href="#projects">View projects</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-head"><span class="num">01</span><h2>About</h2><span class="rule"></span></div>
+    <div class="about-grid">
+      <div>
+        <p>I enjoy learning by building real projects rather than sticking to theory — constantly experimenting with new tools and looking for ways to turn ideas into something usable.</p>
+        <p>My interest sits at the intersection of AI and software development: chatbots, local LLMs, and RAG-based systems, built alongside solid web fundamentals. I like asking "how can I make this better?" rather than closing a project the moment it works.</p>
+        <p>Outside of code, I travel when I can, shoot photos, watch anime, and I'm slowly building a habit of documenting the journey through content.</p>
+      </div>
+      <div>
+        <div class="field"><span class="k">FOCUS</span><span class="v">AI-integrated applications, full-stack web</span></div>
+        <div class="field"><span class="k">STUDYING</span><span class="v">Data structures, OS, databases, AI</span></div>
+        <div class="field"><span class="k">INTERESTS</span><span class="v">Travel, photography, anime, content</span></div>
+        <div class="field"><span class="k">MINDSET</span><span class="v">Builder, not just a programmer</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head"><span class="num">02</span><h2>Skills</h2><span class="rule"></span></div>
+    <div class="skill-groups">
+      <div class="grp">
+        <h3>PROGRAMMING</h3>
+        <div class="chips">
+          <span class="chip">C</span><span class="chip">C++</span><span class="chip">Python</span><span class="chip">JavaScript</span>
+        </div>
+      </div>
+      <div class="grp">
+        <h3>WEB DEVELOPMENT</h3>
+        <div class="chips">
+          <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Node.js</span><span class="chip">Express.js</span>
+        </div>
+      </div>
+      <div class="grp">
+        <h3>AI &amp; EMERGING TECH</h3>
+        <div class="chips">
+          <span class="chip">Generative AI</span><span class="chip">LLMs</span><span class="chip">RAG</span><span class="chip">Ollama</span><span class="chip">AI Chatbots</span>
+        </div>
+      </div>
+      <div class="grp">
+        <h3>TOOLS</h3>
+        <div class="chips">
+          <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">VS Code</span><span class="chip">Canva</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head"><span class="num">03</span><h2>Projects</h2><span class="rule"></span></div>
+
+    <div class="project">
+      <div class="project-top"><h3>AI Chatbot</h3><span class="tag">PYTHON · OLLAMA · LLM</span></div>
+      <p>A locally-run conversational AI project exploring how far a self-hosted language model can go without cloud dependence.</p>
+      <div class="meta">
+        <div><span class="k">FOCUS</span>Natural-language interaction</div>
+        <div><span class="k">FOCUS</span>Local AI models, no cloud calls</div>
+        <div><span class="k">EXPLORING</span>RAG architecture</div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top"><h3>Cab Booking Application</h3><span class="tag">HTML · CSS · JS · NODE.JS</span></div>
+      <p>A web-based cab booking flow built around a simple, distraction-free booking experience.</p>
+      <div class="meta">
+        <div><span class="k">FEATURE</span>Pickup / destination selection</div>
+        <div><span class="k">FEATURE</span>Distance calculation</div>
+        <div><span class="k">FEATURE</span>End-to-end booking workflow</div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top"><h3>Student Management System</h3><span class="tag">HTML · CSS · JS · NODE.JS</span></div>
+      <p>A web application for managing student information digitally, built with a focus on a clean, usable interface.</p>
+      <div class="meta">
+        <div><span class="k">FOCUS</span>Student data management</div>
+        <div><span class="k">FOCUS</span>Web-based information handling</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="section-head"><span class="num">04</span><h2>How I build</h2><span class="rule"></span></div>
+    <div class="process">
+      <div class="step"><span class="n">1</span><span class="t">Identify</span></div>
+      <div class="step"><span class="n">2</span><span class="t">Research</span></div>
+      <div class="step"><span class="n">3</span><span class="t">Design</span></div>
+      <div class="step"><span class="n">4</span><span class="t">Prototype</span></div>
+      <div class="step"><span class="n">5</span><span class="t">Build</span></div>
+      <div class="step"><span class="n">6</span><span class="t">Test</span></div>
+      <div class="step"><span class="n">7</span><span class="t">Improve</span></div>
+    </div>
+    <p style="margin-top:22px; color:var(--paper-dim); font-size:14.5px; max-width:60ch;">This is also how I approach hackathons — I'm drawn to problems involving AI, automation, and education, and I'd rather ship something small and working than something big and stuck at the design stage.</p>
+  </section>
+
+  <section id="learning">
+    <div class="section-head"><span class="num">05</span><h2>Currently learning &amp; beyond code</h2><span class="rule"></span></div>
+    <div class="two-col">
+      <div>
+        <h3>CURRENTLY LEARNING</h3>
+        <ul>
+          <li>Full-stack &amp; backend development</li>
+          <li>APIs and software architecture</li>
+          <li>AI applications, LLMs &amp; RAG</li>
+          <li>Data structures &amp; algorithms</li>
+        </ul>
+      </div>
+      <div>
+        <h3>BEYOND TECHNOLOGY</h3>
+        <ul>
+          <li>Traveling and exploring new places</li>
+          <li>Photography and travel/lifestyle content</li>
+          <li>Anime — Demon Slayer, Attack on Titan, Solo Leveling, Death Note, Jujutsu Kaisen</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-head"><span class="num">06</span><h2>Contact</h2><span class="rule"></span></div>
+    <div class="titleblock">
+      <div class="tb-top">
+        <h2>Let's build something.</h2>
+        <p>Open to collaborations, hackathon teams, open-source work, and AI experiments. Reach out through any of the channels below.</p>
+      </div>
+      <div class="tb-grid">
+        <a href="mailto:bhuvaneesand0203@gmail.com"><span class="k">EMAIL</span><span class="v">bhuvaneesand0203@gmail.com</span></a>
+        <a href="tel:+918122125520"><span class="k">PHONE</span><span class="v">+91 81221 25520</span></a>
+        <a href="https://github.com/bhuvaneesand0203-ops?tab=repositories" target="_blank" rel="noopener"><span class="k">GITHUB</span><span class="v">bhuvaneesand0203-ops</span></a>
+        <a href="https://www.linkedin.com/in/bhuvaneesand" target="_blank" rel="noopener"><span class="k">LINKEDIN</span><span class="v">in/bhuvaneesand</span></a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>SHEET 01/01 — LAST UPDATED 2026 — BUILT BY BHUVANEESAN D</footer>
+
+</body>
+</html>
